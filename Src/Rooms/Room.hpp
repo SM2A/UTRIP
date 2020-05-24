@@ -7,16 +7,13 @@ class Room {
 
 public:
 
-    Room(int id);
+    Room(int id_) : id(id_){}
+    bool is_available(range request_date);
 
 private:
 
     int id;
-    bool is_empty;
-	struct reserve_date{
-		Date start;
-		Date end;
-	}reserve_date_;
+	range reserve_date_;
 
 };
 

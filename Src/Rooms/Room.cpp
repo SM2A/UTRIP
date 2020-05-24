@@ -1,9 +1,6 @@
 #include "Room.hpp"
 
-//using namespace std;
+bool Room::is_available(range request_date) {
 
-Room::Room(int id) {
-
-    this->id = id;
-    this->is_empty = true;
+	return !Date().have_interference(reserve_date_,request_date);
 }
