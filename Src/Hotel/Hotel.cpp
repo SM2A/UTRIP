@@ -24,8 +24,8 @@ float Hotel::calculate_average_price(room_data data) {
 
 	float avg_price = 0;
 	int rooms_count = data.standard.second + data.deluxe.second + data.luxury.second + data.premium.second;
-	avg_price = data.standard.first + data.deluxe.first + data.luxury.first + data.premium.first;
+	avg_price =(float) data.standard.first + data.deluxe.first + data.luxury.first + data.premium.first;
 	if(rooms_count==EMPTY) avg_price=EMPTY;
-	else avg_price = (float)(avg_price/rooms_count);
+	else avg_price = avg_price/(float)rooms_count;
 	return avg_price;
 }
