@@ -31,7 +31,7 @@ public:
 
 class Not_Enough_Room : public std::exception{
 public:
-	virtual const char* what() const throw(){ return "Not Enough Credit";}
+	virtual const char* what() const throw(){ return "Not Enough Room";}
 };
 
 class No_Rating : public std::exception{
