@@ -1,5 +1,5 @@
-#ifndef A7_DATE_HPP
-#define A7_DATE_HPP
+#ifndef DATE_HPP
+#define DATE_HPP
 
 typedef struct r_date range;
 

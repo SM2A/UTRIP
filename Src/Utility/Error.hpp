@@ -1,8 +1,7 @@
-#ifndef A7_ERROR_HPP
-#define A7_ERROR_HPP
+#ifndef ERROR_HPP
+#define ERROR_HPP
 
-#include <string>
-#include <iostream>
+#include <exception>
 
 class Not_Found : public std::exception{
 public:

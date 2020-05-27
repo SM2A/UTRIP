@@ -1,11 +1,11 @@
 #include <iostream>
-#include "Hotel/Hotel_Handler.hpp"
+#include "UTRIP/Utrip.hpp"
 
 using namespace std;
 
 int main(int argc , char*argv[]) {
 
-	Hotel_Handler* h = new Hotel_Handler(argv[1]);
+	auto utrip = Utrip::get_instance();
 
     return 0;
 }

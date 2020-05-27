@@ -1,8 +1,8 @@
-#ifndef A7_HOTEL_HPP
-#define A7_HOTEL_HPP
+#ifndef HOTEL_HPP
+#define HOTEL_HPP
 
 #include <string>
-#include "../Rooms/Room_handler.hpp"
+#include "../Room/Room_handler.hpp"
 
 struct coordinates{
 	double longitude;

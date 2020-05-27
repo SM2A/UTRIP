@@ -1,5 +1,5 @@
-#ifndef A7_HOTEL_HANDLER_HPP
-#define A7_HOTEL_HANDLER_HPP
+#ifndef HOTEL_HANDLER_HPP
+#define HOTEL_HANDLER_HPP
 
 #include "Hotel.hpp"
 

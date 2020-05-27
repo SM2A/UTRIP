@@ -1,5 +1,5 @@
-#ifndef A7_ROOM_HPP
-#define A7_ROOM_HPP
+#ifndef ROOM_HPP
+#define ROOM_HPP
 
 #include "../Utility/Date.hpp"
 

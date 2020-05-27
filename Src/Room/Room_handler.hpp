@@ -1,5 +1,5 @@
-#ifndef A7_ROOM_HANDLER_HPP
-#define A7_ROOM_HANDLER_HPP
+#ifndef ROOM_HANDLER_HPP
+#define ROOM_HANDLER_HPP
 
 #include <vector>
 #include "Delux/Deluxe_Room.hpp"

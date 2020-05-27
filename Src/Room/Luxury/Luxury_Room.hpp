@@ -1,5 +1,5 @@
-#ifndef A7_LUXURY_ROOM_HPP
-#define A7_LUXURY_ROOM_HPP
+#ifndef LUXURY_ROOM_HPP
+#define LUXURY_ROOM_HPP
 
 #include "../Room.hpp"
 
