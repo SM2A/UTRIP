@@ -9,10 +9,14 @@ class User {
 
 public:
 
+	User(std::string user_name , std::string password_ , std::string e_mail);
+	void identity_taken_check(User* new_user , User* user);
+	void cancel_reservation(int id);
+
 private:
 
 	std::string name;
-	std::string password;
+	size_t password;
 	std::string email;
 	float credit;
 	std::vector<float> credit_report;

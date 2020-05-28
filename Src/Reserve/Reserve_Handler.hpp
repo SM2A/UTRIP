@@ -2,20 +2,22 @@
 #define RESERVE_HANDLER_HPP
 
 #include <vector>
-#include "Reserve.hpp"
+
+class Reserve;
 
 class Reserve_Handler {
 
 public:
 
 	Reserve_Handler(){}
-	void print();
-	void cancel(int id);
+	void print(int count);
+	float cancel(int id);
+
+	Reserve* find(int id);
 
 private:
 
 	std::vector<Reserve*> reserves;
-
 };
 
 #endif
