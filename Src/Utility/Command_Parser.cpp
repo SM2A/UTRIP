@@ -21,13 +21,14 @@ void Command_Parser::method_check(string method_) {
 	throw Bad_Request();
 }
 
-void Command_Parser::cancel_reserve(arguments args) {
+void Command_Parser::cancel_reserve(const arguments& args) {
 
 	utrip->cancel_reservation(stoi(find_arg_val(args,ID)));
 }
 
 void Command_Parser::get_command(string command) {
 
+	//if(command)
 	stringstream stream(command);
 	string method_ , command_ , question_mark;
 	stream>>method_>>command_>>question_mark;
@@ -36,6 +37,9 @@ void Command_Parser::get_command(string command) {
 	string arg , val;
 	while (stream>>arg>>val) arguments_.insert(argument_value(arg,val));
 
+	if(method_==method[GET]) get_parser(command_,arguments_);
+	else if(method_==method[POST]) post_parser(command_,arguments_);
+	else if(method_==method[DELETE]) delete_parser(command_,arguments_);
 }
 
 string Command_Parser::find_arg_val(const arguments& args,string arg) {
@@ -45,7 +49,7 @@ string Command_Parser::find_arg_val(const arguments& args,string arg) {
 	throw Bad_Request();
 }
 
-void Command_Parser::signup(arguments args) {
+void Command_Parser::signup(const arguments& args) {
 
 	utrip->creat_user(find_arg_val(args,USER_NAME),find_arg_val(args,PASSWORD),find_arg_val(args,E_MAIL));
 }
@@ -53,4 +57,54 @@ void Command_Parser::signup(arguments args) {
 void Command_Parser::logout() {
 
 	utrip->logout();
+}
+
+void Command_Parser::login(const arguments &args) {
+
+	utrip->login(find_arg_val(args,USER_NAME),find_arg_val(args,PASSWORD));
+}
+
+void Command_Parser::get_parser(string command_, const arguments &args) {
+
+	if(command_== "wallet"){
+
+	} else if(command_== "hotels"){
+
+	}else if(command_== "reserve"){
+
+	}else if(command_== "comments"){
+
+	}else if(command_== "ratings"){
+
+	} else throw Bad_Request();
+}
+
+void Command_Parser::post_parser(string command_, const arguments &args) {
+
+	if(command_== "signup"){
+		signup(args);
+	} else if(command_== "login"){
+		login(args);
+	} else if(command_== "logout"){
+		logout();
+	}else if(command_== "wallet"){
+
+	}else if(command_== "filters"){
+
+	}else if(command_== "reserve"){
+
+	}else if(command_== "comments"){
+
+	} else if(command_== "ratings"){
+
+	}else throw Bad_Request();
+}
+
+void Command_Parser::delete_parser(string command_, const arguments &args) {
+
+	if(command_== "filters"){
+
+	} else if(command_== "reserve"){
+		cancel_reserve(args);
+	} else throw Bad_Request();
 }

@@ -13,7 +13,6 @@ public:
 
 	void print();
 	float cancel();
-	friend Reserve* Reserve_Handler::find(int id);
 
 private:
 
@@ -25,6 +24,8 @@ private:
 	int check_in;
 	int check_out;
 	bool cancelled;
+
+	friend Reserve* Reserve_Handler::find(int id);
 };
 
 #endif

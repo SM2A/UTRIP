@@ -25,3 +25,8 @@ void User::cancel_reservation(int id) {
 	float cost = reservations->cancel(id);
 	credit+=cost;
 }
+
+void User::is_credentials_valid(string password_) {
+	size_t pass = hash<string>{}(password_);
+	if(pass!=password) throw Bad_Request();
+}
