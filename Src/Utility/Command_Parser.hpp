@@ -2,7 +2,13 @@
 #define COMMAND_PARSER_HPP
 
 #include <string>
+#include <map>
 #include "../UTRIP/UTrip.hpp"
+
+#define METHOD_COUNT 3
+
+typedef std::pair<std::string,std::string> argument_value;
+typedef std::map<std::string,std::string> arguments;
 
 class Command_Parser {
 
@@ -14,9 +20,9 @@ public:
 private:
 
 	UTrip* utrip;
-	const std::string method[2] = {"GET","POST"};
+	const std::string method[METHOD_COUNT] = {"GET","POST","DELETE"};
 
-	void signup();
+	void signup(arguments args);
 	void login();
 	void logout();
 	void add_credit();
@@ -27,13 +33,14 @@ private:
 	//tod delete filter
 	void reserve();
 	void show_reserves();
-	void cancel_reserve();
+	void cancel_reserve(arguments args);
 	void show_hotel_ratting();
 	void show_hotel_comments();
 	void add_comment();
 	void add_ratting();
 
 	void method_check(std::string method_);
+	std::string find_arg_val(const arguments& args,std::string arg);
 };
 
 #endif

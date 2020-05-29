@@ -10,6 +10,8 @@ public:
 
 	UTrip(std::string path);
 	void cancel_reservation(int id);
+	void creat_user(std::string user_name , std::string password , std::string e_mail);
+	void logout();
 
 private:
 

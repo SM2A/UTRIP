@@ -5,12 +5,18 @@
 
 using namespace std;
 
-int main(int argc , char*argv[]) {
+int main(int argc, char *argv[]) {
 
-	Command_Parser* parser = new Command_Parser(argv[HOTELS_PATH]);
+	Command_Parser *parser = new Command_Parser(argv[HOTELS_PATH]);
 
 	string command;
-	while (getline(cin,command)) parser->get_command(command);
+	while (getline(cin, command)) {
+		try {
+			parser->get_command(command);
+		} catch (exception &e) {
+			cout << e.what() << endl;
+		}
+	}
 
-    return 0;
+	return 0;
 }
