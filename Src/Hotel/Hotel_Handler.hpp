@@ -8,6 +8,8 @@ class Hotel_Handler {
 public:
 
 	Hotel_Handler(std::string path);
+	void print();
+	void print(int id);
 
 private:
 

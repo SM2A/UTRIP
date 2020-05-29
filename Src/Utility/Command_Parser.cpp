@@ -73,9 +73,9 @@ void Command_Parser::login(const arguments &args) {
 void Command_Parser::get_parser(string command_, const arguments &args) {
 
 	if(command_== "wallet"){
-		utrip->wallet_history(stoi(find_arg_val(args,COUNT)));
+		show_wallet_history(args);
 	} else if(command_== "hotels"){
-
+		show_hotels(args);
 	}else if(command_== "reserve"){
 
 	}else if(command_== "comments"){
@@ -118,4 +118,15 @@ void Command_Parser::delete_parser(string command_, const arguments &args) {
 void Command_Parser::add_credit(const arguments &args) {
 
 	utrip->add_credit(stof(find_arg_val(args,AMOUNT)));
+}
+
+void Command_Parser::show_wallet_history(const arguments &args) {
+
+	utrip->wallet_history(stoi(find_arg_val(args,COUNT)));
+}
+
+void Command_Parser::show_hotels(const arguments &args) {
+
+	if(args.size() == 0) utrip->show_hotel();
+	//else utrip->show_hotel(stoi(find_arg_val(args,ID)));
 }

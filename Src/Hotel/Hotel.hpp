@@ -17,6 +17,10 @@ public:
 	Hotel(std::string id_,std::string name_,int star_,std::string overview_,std::string facilities_,std::string city_,
 			geographical_coordinates location_,std::string image_url_,room_data data);
 
+	void print_summary();
+	void print_detail();
+	friend bool sort_by_name(Hotel* one , Hotel* two);
+
 private:
 
 	std::string id;
@@ -34,5 +38,7 @@ private:
 	float calculate_average_price(room_data data);
 
 };
+
+bool sort_by_name(Hotel* one , Hotel* two);
 
 #endif

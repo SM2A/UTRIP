@@ -1,6 +1,9 @@
 #include "Hotel.hpp"
+#include <iostream>
+#include <iomanip>
 
 #define EMPTY 0
+#define EXPONENT 2
 
 using namespace std;
 
@@ -23,9 +26,35 @@ Hotel::Hotel(string id_, string name_, int star_, string overview_, string facil
 float Hotel::calculate_average_price(room_data data) {
 
 	float avg_price = 0;
-	int rooms_count = data.standard.second + data.deluxe.second + data.luxury.second + data.premium.second;
-	avg_price =(float) data.standard.first + data.deluxe.first + data.luxury.first + data.premium.first;
-	if(rooms_count==EMPTY) avg_price=EMPTY;
-	else avg_price = avg_price/(float)rooms_count;
+	int type_count = 0;
+	long total_price = 0;
+
+	if(data.standard.second!=EMPTY){
+		type_count++;
+		total_price+=data.standard.first;
+	}
+	if(data.deluxe.second!=EMPTY){
+		type_count++;
+		total_price+=data.deluxe.first;
+	}
+	if(data.luxury.second!=EMPTY){
+		type_count++;
+		total_price+=data.luxury.first;
+	}
+	if(data.premium.second!=EMPTY){
+		type_count++;
+		total_price+=data.premium.first;
+	}
+
+	if(type_count==EMPTY) avg_price=EMPTY;
+	else avg_price = (float) total_price/(float)type_count;
 	return avg_price;
 }
+
+void Hotel::print_summary() {
+
+	string summary = id +" "+ name +" "+ to_string(star) +" "+ city +" "+ to_string(total_rooms_count)+" ";
+	cout<<summary<<fixed<<setprecision(EXPONENT)<<average_price<<endl;
+}
+
+bool sort_by_name(Hotel* one , Hotel* two){ return two->id > one->id;}

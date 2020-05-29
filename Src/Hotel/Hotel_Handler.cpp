@@ -1,9 +1,12 @@
 #include "Hotel_Handler.hpp"
+#include "../Utility/Error.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 #define COLUMN_DELIMITER ','
+#define EMPTY 0
 
 using namespace std;
 
@@ -54,5 +57,13 @@ vector<Hotel*> Hotel_Handler::read_hotel_file(string path) {
 		Hotel* _hotel = new Hotel(id,name,stoi(star),overview,facilities,city,geo_coordinates,image_url,rooms);
 		hotels_.push_back(_hotel);
 	}
+	sort(hotels_.begin(),hotels_.end(),sort_by_name);
 	return hotels_;
+}
+
+void Hotel_Handler::print() {
+
+	if(hotels.size() == EMPTY) throw Empty();
+	for(Hotel* hotel : hotels)
+		hotel->print_summary();
 }
