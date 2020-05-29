@@ -15,6 +15,7 @@ public:
 	void cancel_reservation(int id);
 	void is_credentials_valid(std::string password);
 	void add_credit(float value);
+	void print_wallet_history(int count);
 
 private:
 

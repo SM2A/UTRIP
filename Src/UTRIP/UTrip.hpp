@@ -15,6 +15,7 @@ public:
 	void logout();
 	void login(std::string user_name , std::string password);
 	void add_credit(float value);
+	void wallet_history(int count);
 
 private:
 

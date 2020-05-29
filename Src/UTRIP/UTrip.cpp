@@ -34,14 +34,14 @@ void UTrip::creat_user(string user_name, string password, string e_mail) {
 
 void UTrip::logout() {
 
-	if(is_user_logged_in()) throw Permission_Denied();
+	if(!is_user_logged_in()) throw Permission_Denied();
 	logged_in_user = nullptr;
 	cout<<SUCCESS<<endl;
 }
 
 void UTrip::login(string user_name, string password) {
 
-	if(!is_user_logged_in()) throw Permission_Denied();
+	if(is_user_logged_in()) throw Permission_Denied();
 	try {
 		cout<<SUCCESS<<endl;
 		logged_in_user = users->login(user_name,password);
@@ -53,11 +53,17 @@ void UTrip::login(string user_name, string password) {
 
 void UTrip::add_credit(float value) {
 
-	if(is_user_logged_in()) throw Permission_Denied();
+	if(!is_user_logged_in()) throw Permission_Denied();
 	logged_in_user->add_credit(value);
 }
 
 bool UTrip::is_user_logged_in() {
 
 	return logged_in_user != nullptr;
+}
+
+void UTrip::wallet_history(int count) {
+
+	if(!is_user_logged_in()) throw Permission_Denied();
+	logged_in_user->print_wallet_history(count);
 }

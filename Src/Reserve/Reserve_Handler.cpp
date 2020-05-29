@@ -1,15 +1,14 @@
 #include "Reserve_Handler.hpp"
 #include "../Utility/Error.hpp"
 #include "Reserve.hpp"
-#include <iostream>
 
 #define EMPTY 0
 
 void Reserve_Handler::print(int count) {
 
 	if(reserves.size()==EMPTY) throw Empty();
-	for(int i = reserves.size()-1 ; count!=0 ; count--)
-		reserves[i]->print();
+	for(int i = 0 ; (i<reserves.size())&&(i!=count) ; i++)
+		reserves[(reserves.size())-i]->print();
 }
 
 float Reserve_Handler::cancel(int id) {

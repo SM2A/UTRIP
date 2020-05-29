@@ -27,18 +27,18 @@ private:
 	void login(const arguments& args);
 	void logout();
 	void add_credit(const arguments &args);
-	void show_wallet_history();
-	void show_hotels();
-	void show_hotel_detail();
+	void show_wallet_history(const arguments &args);
+	void show_hotels(const arguments &args);
+	void show_hotel_detail(const arguments &args);
 	//todo filter
 	//tod delete filter
-	void reserve();
-	void show_reserves();
+	void reserve(const arguments &args);
+	void show_reserves(const arguments &args);
 	void cancel_reserve(const arguments& args);
-	void show_hotel_ratting();
-	void show_hotel_comments();
-	void add_comment();
-	void add_ratting();
+	void show_hotel_ratting(const arguments &args);
+	void show_hotel_comments(const arguments &args);
+	void add_comment(const arguments &args);
+	void add_ratting(const arguments &args);
 
 	void get_parser(std::string command_ ,const arguments& args);
 	void post_parser(std::string command_ ,const arguments& args);

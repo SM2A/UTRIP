@@ -1,12 +1,14 @@
 #include "Command_Parser.hpp"
 #include "Error.hpp"
 #include <sstream>
+#include <iostream>
 
 #define ID "id"
 #define USER_NAME "username"
 #define E_MAIL "email"
 #define PASSWORD "password"
 #define AMOUNT "amount"
+#define COUNT "count"
 
 using namespace std;
 
@@ -29,8 +31,6 @@ void Command_Parser::method_check(string method_) {
 
 void Command_Parser::get_command(string command) {
 
-	//todo empty line error
-	//if(command)
 	stringstream stream(command);
 	string method_ , command_ , question_mark;
 	stream>>method_>>command_>>question_mark;
@@ -39,9 +39,13 @@ void Command_Parser::get_command(string command) {
 	string arg , val;
 	while (stream>>arg>>val) arguments_.insert(argument_value(arg,val));
 
-	if(method_==method[GET]) get_parser(command_,arguments_);
-	else if(method_==method[POST]) post_parser(command_,arguments_);
-	else if(method_==method[DELETE]) delete_parser(command_,arguments_);
+	try {
+		if (method_ == method[GET]) get_parser(command_, arguments_);
+		else if (method_ == method[POST]) post_parser(command_, arguments_);
+		else if (method_ == method[DELETE]) delete_parser(command_, arguments_);
+	}catch (exception& e){
+		cout<<e.what()<<endl;
+	}
 }
 
 string Command_Parser::find_arg_val(const arguments& args,string arg) {
@@ -69,7 +73,7 @@ void Command_Parser::login(const arguments &args) {
 void Command_Parser::get_parser(string command_, const arguments &args) {
 
 	if(command_== "wallet"){
-
+		utrip->wallet_history(stoi(find_arg_val(args,COUNT)));
 	} else if(command_== "hotels"){
 
 	}else if(command_== "reserve"){
