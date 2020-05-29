@@ -14,6 +14,7 @@ public:
 	void identity_taken_check(User* new_user , User* user);
 	void cancel_reservation(int id);
 	void is_credentials_valid(std::string password);
+	void add_credit(float value);
 
 private:
 

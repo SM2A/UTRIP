@@ -20,7 +20,7 @@ User *User_Handler::creat_user(string user_name, string password, string e_mail)
 
 User *User_Handler::find(string user_name) {
 
-	for(User* u : users) if(u->name == user_name) return u;
+	for(User* user : users) if(user->name == user_name) return user;
 	return nullptr;
 }
 

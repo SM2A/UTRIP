@@ -30,3 +30,9 @@ void User::is_credentials_valid(string password_) {
 	size_t pass = hash<string>{}(password_);
 	if(pass!=password) throw Bad_Request();
 }
+
+void User::add_credit(float value) {
+
+	if(value <= INIT_CREDIT) throw Bad_Request();
+	credit+=value;
+}

@@ -6,6 +6,7 @@
 #define USER_NAME "username"
 #define E_MAIL "email"
 #define PASSWORD "password"
+#define AMOUNT "amount"
 
 using namespace std;
 
@@ -21,13 +22,14 @@ void Command_Parser::method_check(string method_) {
 	throw Bad_Request();
 }
 
-void Command_Parser::cancel_reserve(const arguments& args) {
+/*void Command_Parser::cancel_reserve(const arguments& args) {
 
 	utrip->cancel_reservation(stoi(find_arg_val(args,ID)));
-}
+}*/
 
 void Command_Parser::get_command(string command) {
 
+	//todo empty line error
 	//if(command)
 	stringstream stream(command);
 	string method_ , command_ , question_mark;
@@ -88,7 +90,7 @@ void Command_Parser::post_parser(string command_, const arguments &args) {
 	} else if(command_== "logout"){
 		logout();
 	}else if(command_== "wallet"){
-
+		add_credit(args);
 	}else if(command_== "filters"){
 
 	}else if(command_== "reserve"){
@@ -105,6 +107,11 @@ void Command_Parser::delete_parser(string command_, const arguments &args) {
 	if(command_== "filters"){
 
 	} else if(command_== "reserve"){
-		cancel_reserve(args);
+		//cancel_reserve(args);
 	} else throw Bad_Request();
+}
+
+void Command_Parser::add_credit(const arguments &args) {
+
+	utrip->add_credit(stof(find_arg_val(args,AMOUNT)));
 }

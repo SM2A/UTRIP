@@ -26,7 +26,7 @@ private:
 	void signup(const arguments& args);
 	void login(const arguments& args);
 	void logout();
-	void add_credit();
+	void add_credit(const arguments &args);
 	void show_wallet_history();
 	void show_hotels();
 	void show_hotel_detail();
