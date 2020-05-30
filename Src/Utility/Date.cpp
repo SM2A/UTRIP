@@ -13,4 +13,4 @@ bool Date::have_interference(range first, range second) {
 	else return false;
 }
 
-int Date::duration(range rang_) { return rang_.end.day - rang_.start.day;}
+int Date::duration(range range_) { return (range_.end.day - range_.start.day)+1;}

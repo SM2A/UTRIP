@@ -11,7 +11,7 @@ public:
 	void set_day(int day_) {this->day = day_;}
 	int get_day(){ return day;}
 	bool have_interference(range first , range second);
-	int duration(range rang_);
+	int duration(range range_);
 
 private:
 

@@ -26,12 +26,6 @@ void User::identity_taken_check(User *new_user, User *user) {
 	if(new_user->email == user->email) throw Bad_Request();
 }
 
-void User::cancel_reservation(int id) {
-
-	float cost = reservations->cancel(id);
-	credit+=cost;
-}
-
 void User::is_credentials_valid(string password_) {
 	size_t pass = hash<string>{}(password_);
 	if(pass!=password) throw Bad_Request();
@@ -65,6 +59,19 @@ void User::reserve(Hotel *hotel, string room_type, int quantity, range date_,int
 	vector<Room*> rooms = hotel->reserve(room_type,quantity,date_);
 	reservations->reserve(hotel->get_id(),room_type,quantity,price,date_,rooms);
 	pay_for_reserve(price);
-	credit_report.push_back(price);
+	credit_report.push_back(credit);
 
+}
+
+void User::show_reserves() {
+
+	reservations->print();
+}
+
+void User::cancel_reservation(int id) {
+
+	float cost = reservations->cancel(id);
+	credit+=cost;
+	credit_report.push_back(credit);
+	cout<<SUCCESS<<endl;
 }

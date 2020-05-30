@@ -13,6 +13,7 @@ public:
     Room(int id_);
     bool is_available(range request_date);
     void reserve(range _reserve_date_);
+    void cancel_reserve();
     virtual std::string get_id() = 0;
 
 private:

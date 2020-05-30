@@ -60,8 +60,9 @@ void Command_Parser::signup(const arguments& args) {
 	utrip->creat_user(find_arg_val(args,USER_NAME),find_arg_val(args,PASSWORD),find_arg_val(args,E_MAIL));
 }
 
-void Command_Parser::logout() {
+void Command_Parser::logout(const arguments &args) {
 
+	if(args.size()!=0) throw Bad_Request();
 	utrip->logout();
 }
 
@@ -77,7 +78,7 @@ void Command_Parser::get_parser(string command_, const arguments &args) {
 	} else if(command_== "hotels"){
 		show_hotels(args);
 	}else if(command_== "reserves"){
-
+		show_reserves(args);
 	}else if(command_== "comments"){
 
 	}else if(command_== "ratings"){
@@ -92,7 +93,7 @@ void Command_Parser::post_parser(string command_, const arguments &args) {
 	} else if(command_== "login"){
 		login(args);
 	} else if(command_== "logout"){
-		logout();
+		logout(args);
 	}else if(command_== "wallet"){
 		add_credit(args);
 	}else if(command_== "filters"){
@@ -111,7 +112,7 @@ void Command_Parser::delete_parser(string command_, const arguments &args) {
 	if(command_== "filters"){
 
 	} else if(command_== "reserves"){
-		//cancel_reserve(args);
+		cancel_reserve(args);
 	} else throw Bad_Request();
 }
 
@@ -135,4 +136,15 @@ void Command_Parser::reserve(const arguments &args) {
 
 	utrip->reserve(find_arg_val(args,HOTEL),find_arg_val(args,TYPE),stoi(find_arg_val(args,QUANTITY)),
 	               stoi(find_arg_val(args,CHECK_IN)),stoi(find_arg_val(args,CHECK_OUT)));
+}
+
+void Command_Parser::show_reserves(const arguments &args) {
+
+	if(args.size()!=0) throw Bad_Request();
+	utrip->show_reserves();
+}
+
+void Command_Parser::cancel_reserve(const arguments &args) {
+
+	utrip->cancel_reservation(stoi(find_arg_val(args,ID)));
 }

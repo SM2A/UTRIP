@@ -16,3 +16,9 @@ void Room::reserve(range _reserve_date_) {
 	reserve_date_.start = _reserve_date_.start;
 	reserve_date_.end = _reserve_date_.end;
 }
+
+void Room::cancel_reserve() {
+
+	reserve_date_.start.set_day(NOT_RESERVED);
+	reserve_date_.end.set_day(NOT_RESERVED);
+}

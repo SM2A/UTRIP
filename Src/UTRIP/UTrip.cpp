@@ -14,12 +14,6 @@ UTrip::UTrip(string path) {
 	logged_in_user = nullptr;
 }
 
-void UTrip::cancel_reservation(int id) {
-
-	if(!is_user_logged_in()) throw Permission_Denied();
-	logged_in_user->cancel_reservation(id);
-}
-
 void UTrip::creat_user(string user_name, string password, string e_mail) {
 
 	if(is_user_logged_in()) throw Permission_Denied();
@@ -104,4 +98,15 @@ void UTrip::reserve(string hotel_id, string room_type, int quantity, int check_i
 	}catch (exception& e){
 		cout<<e.what()<<endl;
 	}
+}
+
+void UTrip::show_reserves() {
+
+	logged_in_user->show_reserves();
+}
+
+void UTrip::cancel_reservation(int id) {
+
+	if(!is_user_logged_in()) throw Permission_Denied();
+	logged_in_user->cancel_reservation(id);
 }

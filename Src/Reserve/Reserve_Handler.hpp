@@ -12,12 +12,10 @@ class Reserve_Handler {
 public:
 
 	Reserve_Handler(){}
-	void print(int count);
+	void print();
 	float cancel(int id);
 	void reserve(std::string hotel_id , std::string room_type , int quantity , int cost , range reservation_date_
 			, std::vector<Room*> rooms);
-
-	Reserve* find(int id);
 
 private:
 
