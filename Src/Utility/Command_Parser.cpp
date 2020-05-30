@@ -9,6 +9,11 @@
 #define PASSWORD "password"
 #define AMOUNT "amount"
 #define COUNT "count"
+#define HOTEL "hotel"
+#define  TYPE "type"
+#define QUANTITY "quantity"
+#define CHECK_IN "check_in"
+#define CHECK_OUT "check_out"
 
 using namespace std;
 
@@ -71,7 +76,7 @@ void Command_Parser::get_parser(string command_, const arguments &args) {
 		show_wallet_history(args);
 	} else if(command_== "hotels"){
 		show_hotels(args);
-	}else if(command_== "reserve"){
+	}else if(command_== "reserves"){
 
 	}else if(command_== "comments"){
 
@@ -92,8 +97,8 @@ void Command_Parser::post_parser(string command_, const arguments &args) {
 		add_credit(args);
 	}else if(command_== "filters"){
 
-	}else if(command_== "reserve"){
-
+	}else if(command_== "reserves"){
+		reserve(args);
 	}else if(command_== "comments"){
 
 	} else if(command_== "ratings"){
@@ -105,7 +110,7 @@ void Command_Parser::delete_parser(string command_, const arguments &args) {
 
 	if(command_== "filters"){
 
-	} else if(command_== "reserve"){
+	} else if(command_== "reserves"){
 		//cancel_reserve(args);
 	} else throw Bad_Request();
 }
@@ -124,4 +129,10 @@ void Command_Parser::show_hotels(const arguments &args) {
 
 	if(args.size() == 0) utrip->show_hotel();
 	else utrip->show_hotel(find_arg_val(args,ID));
+}
+
+void Command_Parser::reserve(const arguments &args) {
+
+	utrip->reserve(find_arg_val(args,HOTEL),find_arg_val(args,TYPE),stoi(find_arg_val(args,QUANTITY)),
+	               stoi(find_arg_val(args,CHECK_IN)),stoi(find_arg_val(args,CHECK_OUT)));
 }

@@ -1,5 +1,6 @@
 #include "UTrip.hpp"
 #include <iostream>
+#include "../Hotel/Hotel.hpp"
 #include "../Utility/Error.hpp"
 
 #define SUCCESS "OK"
@@ -78,11 +79,28 @@ void UTrip::show_hotel() {
 	}
 }
 
-void UTrip::show_hotel(std::string id) {
+void UTrip::show_hotel(string id) {
 
 	if(!is_user_logged_in()) throw Permission_Denied();
 	try {
 		hotels->print(id);
+	}catch (exception& e){
+		cout<<e.what()<<endl;
+	}
+}
+
+void UTrip::reserve(string hotel_id, string room_type, int quantity, int check_in, int check_out) {
+
+	if(!is_user_logged_in()) throw Permission_Denied();
+	range reserve_date;
+	reserve_date.start.set_day(check_in);
+	reserve_date.end.set_day(check_out);
+	try {
+		Hotel *hotel = hotels->find(hotel_id);
+		if(!logged_in_user->have_enough_credit(hotel->reserve_cost(room_type,quantity,reserve_date)))
+			throw Not_Enough_Credit();
+		logged_in_user->reserve(hotel,room_type,quantity,
+				reserve_date,hotel->reserve_cost(room_type,quantity,reserve_date));
 	}catch (exception& e){
 		cout<<e.what()<<endl;
 	}

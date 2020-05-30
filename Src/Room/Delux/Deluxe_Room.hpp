@@ -8,6 +8,7 @@ class Deluxe_Room : public Room{
 public:
 
 	Deluxe_Room(int id_) : Room(id_){}
+	std::string get_id(){ return "d"+std::to_string(id);}
 
 };
 

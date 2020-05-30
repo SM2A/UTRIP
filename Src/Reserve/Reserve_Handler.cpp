@@ -1,6 +1,9 @@
+#include <iostream>
 #include "Reserve_Handler.hpp"
 #include "../Utility/Error.hpp"
 #include "Reserve.hpp"
+
+using namespace std;
 
 #define EMPTY 0
 
@@ -28,4 +31,13 @@ Reserve *Reserve_Handler::find(int id) {
 
 	//throw Not_Found();
 	return nullptr;
+}
+
+void Reserve_Handler::reserve(string hotel_id,string room_type, int quantity, int cost, range reservation_date_,
+		vector<Room *> rooms) {
+
+	Reserve* reserve = new Reserve(hotel_id,room_type,quantity,cost,reservation_date_,rooms);
+	for(Room* room : rooms) cout<<room->get_id()<<" ";
+	cout<<endl;
+	reserves.push_back(reserve);
 }

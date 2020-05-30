@@ -1,9 +1,11 @@
 #include "Hotel.hpp"
 #include <iostream>
 #include <iomanip>
+#include "../Utility/Error.hpp"
 
 #define EMPTY 0
 #define EXPONENT 2
+#define NO_ROOM -1
 
 using namespace std;
 
@@ -70,4 +72,26 @@ void Hotel::print_detail() {
 	cout<<"longitude: "<<fixed<<setprecision(EXPONENT)<<location.longitude<<endl;
 	cout<<"#rooms: "<<this->rooms->rooms_count()<<endl;
 	cout<<"price: "<<this->rooms->rooms_price()<<endl;
+}
+
+int Hotel::reserve_cost(string room_type, int quantity , range date_) {
+
+	int rooms_cost = 0;
+	if(room_type == "standard") rooms_cost = rooms->check_availability_s(quantity,date_);
+	else if(room_type == "deluxe") rooms_cost = rooms->check_availability_d(quantity,date_);
+	else if(room_type == "premium") rooms_cost = rooms->check_availability_p(quantity,date_);
+	else if(room_type == "luxury") rooms_cost = rooms->check_availability_l(quantity,date_);
+	if(rooms_cost == NO_ROOM) throw Not_Enough_Room();
+
+	return rooms_cost;
+}
+
+vector<Room*> Hotel::reserve(string room_type, int quantity, range date_) {
+
+	vector<Room*> rooms_;
+	if(room_type == "standard") rooms_ = rooms->reserve_s(quantity,date_);
+	else if(room_type == "deluxe") rooms_ = rooms->reserve_d(quantity,date_);
+	else if(room_type == "premium") rooms_ = rooms->reserve_p(quantity,date_);
+	else if(room_type == "luxury") rooms_ = rooms->reserve_l(quantity,date_);
+	return rooms_;
 }

@@ -18,6 +18,7 @@ public:
 	void wallet_history(int count);
 	void show_hotel();
 	void show_hotel(std::string id);
+	void reserve(std::string hotel_id,std::string room_type,int quantity,int check_in,int check_out);
 
 private:
 

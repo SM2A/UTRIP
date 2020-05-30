@@ -2,6 +2,8 @@
 #define RESERVE_HANDLER_HPP
 
 #include <vector>
+#include <string>
+#include "../Room/Room.hpp"
 
 class Reserve;
 
@@ -12,6 +14,8 @@ public:
 	Reserve_Handler(){}
 	void print(int count);
 	float cancel(int id);
+	void reserve(std::string hotel_id , std::string room_type , int quantity , int cost , range reservation_date_
+			, std::vector<Room*> rooms);
 
 	Reserve* find(int id);
 

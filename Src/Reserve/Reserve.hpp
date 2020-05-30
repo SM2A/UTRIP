@@ -3,13 +3,15 @@
 
 #include <string>
 #include "Reserve_Handler.hpp"
+#include "../Utility/Date.hpp"
+#include "../Room/Room.hpp"
 
 class Reserve {
 
 public:
 
-	Reserve(std::string hotel_id , std::string room_type , int quantity , int cost , int check_in ,
-			int check_out , bool cancelled = false);
+	Reserve(std::string hotel_id , std::string room_type , int quantity , int cost , range reservation_date_
+				, std::vector<Room*> rooms_ ,bool cancelled = false);
 
 	void print();
 	float cancel();
@@ -21,8 +23,8 @@ private:
 	std::string room_type;
 	int quantity;
 	int cost;
-	int check_in;
-	int check_out;
+	range reservation_date;
+	std::vector<Room*> rooms;
 	bool cancelled;
 
 	friend Reserve* Reserve_Handler::find(int id);

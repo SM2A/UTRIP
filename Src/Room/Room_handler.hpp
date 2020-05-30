@@ -25,17 +25,27 @@ public:
 	std::string rooms_count();
 	std::string rooms_price();
 
+	int check_availability_s(int quantity, range date_);
+	int check_availability_d(int quantity, range date_);
+	int check_availability_p(int quantity, range date_);
+	int check_availability_l(int quantity, range date_);
+
+	std::vector<Room*> reserve_s(int quantity, range date_);
+	std::vector<Room*> reserve_d(int quantity, range date_);
+	std::vector<Room*> reserve_p(int quantity, range date_);
+	std::vector<Room*> reserve_l(int quantity, range date_);
+
 private:
 
 	std::pair<int,std::vector<Standard_Room*>> standard;
 	std::pair<int,std::vector<Deluxe_Room*>> deluxe;
 	std::pair<int,std::vector<Luxury_Room*>> luxury;
 	std::pair<int,std::vector<Premium_Room*>> premium;
+
 	void creat_standard_room(price_count standard_);
 	void creat_deluxe_room(price_count deluxe_);
 	void creat_luxury_room(price_count luxury_);
 	void creat_premium_room(price_count premium_);
-
 };
 
 #endif

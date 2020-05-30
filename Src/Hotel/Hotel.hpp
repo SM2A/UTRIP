@@ -22,6 +22,9 @@ public:
 	void print_detail();
 	friend bool sort_by_name(Hotel* one , Hotel* two);
 	friend Hotel* Hotel_Handler::find(std::string id);
+	int reserve_cost(std::string room_type , int quantity , range date_);
+	std::vector<Room*> reserve(std::string room_type , int quantity , range date_);
+	std::string get_id(){ return id;};
 
 private:
 

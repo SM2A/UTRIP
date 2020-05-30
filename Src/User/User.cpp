@@ -2,7 +2,7 @@
 #include "../Utility/Error.hpp"
 #include <iostream>
 #include <iomanip>
-#include <cmath>
+#include "../Hotel/Hotel.hpp"
 
 #define INIT_CREDIT 0
 #define EXPONENT 2
@@ -47,12 +47,24 @@ void User::add_credit(float value) {
 
 void User::print_wallet_history(int count) {
 
-	for (int i = 0; (i < credit_report.size()) && (i != count); i++) {
-		if (credit_report[(credit_report.size()-1)-i] == floor(credit_report[(credit_report.size()-1)-i]) ) {
-			cout << credit_report[(credit_report.size() - 1) - i] << endl;
-		} else {
-			cout << fixed;
-			cout << setprecision(EXPONENT) << credit_report[(credit_report.size() - 1) - i] << endl;
-		}
-	}
+	for (int i = 0; (i < credit_report.size()) && (i != count); i++)
+		cout << fixed << setprecision(EXPONENT) << credit_report[(credit_report.size() - 1) - i] << endl;
+}
+
+bool User::have_enough_credit(int credit_) {
+	return credit_ <= this->credit;
+}
+
+void User::pay_for_reserve(int price) {
+
+	credit-=price;
+}
+
+void User::reserve(Hotel *hotel, string room_type, int quantity, range date_,int price) {
+
+	vector<Room*> rooms = hotel->reserve(room_type,quantity,date_);
+	reservations->reserve(hotel->get_id(),room_type,quantity,price,date_,rooms);
+	pay_for_reserve(price);
+	credit_report.push_back(price);
+
 }

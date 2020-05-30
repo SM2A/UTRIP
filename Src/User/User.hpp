@@ -5,6 +5,9 @@
 #include <vector>
 #include "../Reserve/Reserve_Handler.hpp"
 #include "User_Handler.hpp"
+#include "../Utility/Date.hpp"
+
+class Hotel;
 
 class User {
 
@@ -16,6 +19,8 @@ public:
 	void is_credentials_valid(std::string password);
 	void add_credit(float value);
 	void print_wallet_history(int count);
+	bool have_enough_credit(int credit_);
+	void reserve(Hotel* hotel , std::string room_type , int quantity , range date_ ,int price);
 
 private:
 
@@ -26,6 +31,7 @@ private:
 	std::vector<float> credit_report;
 	Reserve_Handler* reservations;
 
+	void pay_for_reserve(int price);
 	friend User* User_Handler::find(std::string user_name);
 };
 
