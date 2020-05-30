@@ -70,8 +70,19 @@ void UTrip::wallet_history(int count) {
 
 void UTrip::show_hotel() {
 
+	if(!is_user_logged_in()) throw Permission_Denied();
 	try {
 		hotels->print();
+	}catch (exception& e){
+		cout<<e.what()<<endl;
+	}
+}
+
+void UTrip::show_hotel(std::string id) {
+
+	if(!is_user_logged_in()) throw Permission_Denied();
+	try {
+		hotels->print(id);
 	}catch (exception& e){
 		cout<<e.what()<<endl;
 	}

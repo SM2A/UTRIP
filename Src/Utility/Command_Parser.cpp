@@ -24,11 +24,6 @@ void Command_Parser::method_check(string method_) {
 	throw Bad_Request();
 }
 
-/*void Command_Parser::cancel_reserve(const arguments& args) {
-
-	utrip->cancel_reservation(stoi(find_arg_val(args,ID)));
-}*/
-
 void Command_Parser::get_command(string command) {
 
 	stringstream stream(command);
@@ -128,5 +123,5 @@ void Command_Parser::show_wallet_history(const arguments &args) {
 void Command_Parser::show_hotels(const arguments &args) {
 
 	if(args.size() == 0) utrip->show_hotel();
-	//else utrip->show_hotel(stoi(find_arg_val(args,ID)));
+	else utrip->show_hotel(find_arg_val(args,ID));
 }

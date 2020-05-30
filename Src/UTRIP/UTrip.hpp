@@ -17,7 +17,7 @@ public:
 	void add_credit(float value);
 	void wallet_history(int count);
 	void show_hotel();
-	void show_hotel(int id);
+	void show_hotel(std::string id);
 
 private:
 

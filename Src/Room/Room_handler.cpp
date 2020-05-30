@@ -1,5 +1,7 @@
 #include "Room_handler.hpp"
 
+using namespace std;
+
 Room_handler::Room_handler(room_data data) {
 
 	creat_standard_room(data.standard);
@@ -42,4 +44,18 @@ void Room_handler::creat_premium_room(price_count premium_) {
 		Premium_Room* room = new Premium_Room(i+1);
 		this->premium.second.push_back(room);
 	}
+}
+
+std::string Room_handler::rooms_count() {
+
+	string out = to_string(standard.second.size()) +" "+ to_string(deluxe.second.size()) +" "+
+			to_string(luxury.second.size()) +" "+ to_string(premium.second.size());
+	return out;
+}
+
+std::string Room_handler::rooms_price() {
+
+	string out = to_string(standard.first) +" "+ to_string(deluxe.first) +" "+to_string(luxury.first) +" "+
+			to_string(premium.first);
+	return out;
 }

@@ -2,6 +2,7 @@
 #define ROOM_HANDLER_HPP
 
 #include <vector>
+#include "string"
 #include "Delux/Deluxe_Room.hpp"
 #include "Luxury/Luxury_Room.hpp"
 #include "Premium/Premium_Room.hpp"
@@ -21,6 +22,8 @@ class Room_handler {
 public:
 
 	Room_handler(room_data data);
+	std::string rooms_count();
+	std::string rooms_price();
 
 private:
 

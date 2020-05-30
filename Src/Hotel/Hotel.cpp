@@ -58,3 +58,16 @@ void Hotel::print_summary() {
 }
 
 bool sort_by_name(Hotel* one , Hotel* two){ return two->id > one->id;}
+
+void Hotel::print_detail() {
+
+	cout<<id<<endl<<name<<endl;
+	cout<<"star: "<<star<<endl;
+	cout<<"overview: "<<overview<<endl;
+	cout<<"amenities: "<<facilities<<endl;
+	cout<<"city: "<<city<<endl;
+	cout<<"latitude: "<<fixed<<setprecision(EXPONENT)<<location.latitude<<endl;
+	cout<<"longitude: "<<fixed<<setprecision(EXPONENT)<<location.longitude<<endl;
+	cout<<"#rooms: "<<this->rooms->rooms_count()<<endl;
+	cout<<"price: "<<this->rooms->rooms_price()<<endl;
+}

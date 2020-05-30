@@ -3,6 +3,7 @@
 
 #include <string>
 #include "../Room/Room_handler.hpp"
+#include "Hotel_Handler.hpp"
 
 struct coordinates{
 	double longitude;
@@ -20,6 +21,7 @@ public:
 	void print_summary();
 	void print_detail();
 	friend bool sort_by_name(Hotel* one , Hotel* two);
+	friend Hotel* Hotel_Handler::find(std::string id);
 
 private:
 

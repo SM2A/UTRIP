@@ -1,7 +1,10 @@
 #ifndef HOTEL_HANDLER_HPP
 #define HOTEL_HANDLER_HPP
 
-#include "Hotel.hpp"
+#include <string>
+#include <vector>
+
+class Hotel;
 
 class Hotel_Handler {
 
@@ -9,7 +12,8 @@ public:
 
 	Hotel_Handler(std::string path);
 	void print();
-	void print(int id);
+	void print(std::string id);
+	Hotel* find(std::string id);
 
 private:
 

@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include "Hotel.hpp"
 
 #define COLUMN_DELIMITER ','
 #define EMPTY 0
@@ -66,4 +67,21 @@ void Hotel_Handler::print() {
 	if(hotels.size() == EMPTY) throw Empty();
 	for(Hotel* hotel : hotels)
 		hotel->print_summary();
+}
+
+void Hotel_Handler::print(std::string id) {
+
+	try{
+		find(id)->print_detail();
+	}catch (...){
+		throw Not_Found();
+	}
+}
+
+Hotel *Hotel_Handler::find(std::string id) {
+
+	for(Hotel* hotel : hotels)
+		if(hotel->id == id) return hotel;
+
+	return nullptr;
 }
