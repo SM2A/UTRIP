@@ -24,6 +24,7 @@ Hotel::Hotel(string id_, string name_, int star_, string overview_, string facil
 	this->total_rooms_count = data.standard.second + data.deluxe.second + data.luxury.second + data.premium.second;
 	this->average_price = calculate_average_price(data);
 	this->comments = new Comment_Handler();
+	this->ratings = new Rating_Handler();
 }
 
 float Hotel::calculate_average_price(room_data data) {
@@ -105,4 +106,16 @@ void Hotel::add_comment(string writer , string comment) {
 void Hotel::show_comments() {
 
 	comments->print();
+}
+
+void
+Hotel::rate(string writer, float location, float cleanness, float staff, float facilities,
+		float value_for_money,float overall) {
+
+	ratings->add_rating(writer,location,cleanness,staff,facilities,value_for_money,overall);
+}
+
+void Hotel::show_average_rating() {
+
+	ratings->print_average();
 }

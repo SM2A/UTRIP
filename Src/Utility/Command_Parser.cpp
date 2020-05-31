@@ -15,6 +15,12 @@
 #define CHECK_IN "check_in"
 #define CHECK_OUT "check_out"
 #define COMMENT "comment"
+#define LOCATION "location"
+#define CLEANLINESS "cleanliness"
+#define STAFF "staff"
+#define FACILITIES "facilities"
+#define VALUE_FOR_MONEY "value_for_money"
+#define OVERALL_RATING "overall_rating"
 
 using namespace std;
 
@@ -78,7 +84,7 @@ void Command_Parser::get_parser(string command_, const arguments &args) {
 	else if(command_== "hotels") show_hotels(args);
 	else if(command_== "reserves") show_reserves(args);
 	else if(command_== "comments") show_hotel_comments(args);
-	else if(command_== "ratings");
+	else if(command_== "ratings") show_hotel_ratting(args);
 	else throw Bad_Request();
 }
 
@@ -91,7 +97,7 @@ void Command_Parser::post_parser(string command_, const arguments &args) {
 	else if(command_== "filters");
 	else if(command_== "reserves") reserve(args);
 	else if(command_== "comments") add_comment(args);
-	else if(command_== "ratings");
+	else if(command_== "ratings")add_ratting(args);
 	else throw Bad_Request();
 }
 
@@ -143,4 +149,17 @@ void Command_Parser::add_comment(const arguments &args) {
 void Command_Parser::show_hotel_comments(const arguments &args) {
 
 	utrip->show_hotel_comment(find_arg_val(args,HOTEL));
+}
+
+void Command_Parser::add_ratting(const arguments &args) {
+
+	utrip->add_rating(find_arg_val(args,HOTEL),stof(find_arg_val(args,LOCATION)),
+			stof(find_arg_val(args,CLEANLINESS)),stof(find_arg_val(args,STAFF)),
+			stof(find_arg_val(args,FACILITIES)),stof(find_arg_val(args,VALUE_FOR_MONEY)),
+			stof(find_arg_val(args,OVERALL_RATING)));
+}
+
+void Command_Parser::show_hotel_ratting(const arguments &args) {
+
+	utrip->show_hotel_rating(find_arg_val(args,HOTEL));
 }

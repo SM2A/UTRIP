@@ -23,6 +23,7 @@ public:
 	void reserve(Hotel* hotel , std::string room_type , int quantity , range date_ ,int price);
 	void show_reserves();
 	void add_comment(std::string comment,Hotel* hotel);
+	std::string get_user_name(){ return name;}
 
 private:
 

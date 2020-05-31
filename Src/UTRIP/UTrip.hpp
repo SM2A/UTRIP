@@ -22,6 +22,9 @@ public:
 	void show_reserves();
 	void add_comment(std::string hotel_id,std::string comment);
 	void show_hotel_comment(std::string hotel_id);
+	void add_rating(std::string hotel_id,float location,float cleanness,float staff,float facilities,
+	                float value_for_money,float overall);
+	void show_hotel_rating(std::string hotel_id);
 
 private:
 

@@ -122,3 +122,17 @@ void UTrip::show_hotel_comment(std::string hotel_id) {
 	Hotel* hotel = hotels->find(hotel_id);
 	hotel->show_comments();
 }
+
+void UTrip::add_rating(std::string hotel_id, float location, float cleanness, float staff, float facilities,
+                       float value_for_money, float overall) {
+
+	if(!is_user_logged_in()) throw Permission_Denied();
+	Hotel* hotel = hotels->find(hotel_id);
+	hotel->rate(logged_in_user->get_user_name(),location,cleanness,staff,facilities,value_for_money,overall);
+	cout<<SUCCESS<<endl;
+}
+
+void UTrip::show_hotel_rating(std::string hotel_id) {
+
+	hotels->find(hotel_id)->show_average_rating();
+}
