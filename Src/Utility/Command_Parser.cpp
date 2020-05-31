@@ -14,6 +14,7 @@
 #define QUANTITY "quantity"
 #define CHECK_IN "check_in"
 #define CHECK_OUT "check_out"
+#define COMMENT "comment"
 
 using namespace std;
 
@@ -73,47 +74,32 @@ void Command_Parser::login(const arguments &args) {
 
 void Command_Parser::get_parser(string command_, const arguments &args) {
 
-	if(command_== "wallet"){
-		show_wallet_history(args);
-	} else if(command_== "hotels"){
-		show_hotels(args);
-	}else if(command_== "reserves"){
-		show_reserves(args);
-	}else if(command_== "comments"){
-
-	}else if(command_== "ratings"){
-
-	} else throw Bad_Request();
+	if(command_== "wallet") show_wallet_history(args);
+	else if(command_== "hotels") show_hotels(args);
+	else if(command_== "reserves") show_reserves(args);
+	else if(command_== "comments") show_hotel_comments(args);
+	else if(command_== "ratings");
+	else throw Bad_Request();
 }
 
 void Command_Parser::post_parser(string command_, const arguments &args) {
 
-	if(command_== "signup"){
-		signup(args);
-	} else if(command_== "login"){
-		login(args);
-	} else if(command_== "logout"){
-		logout(args);
-	}else if(command_== "wallet"){
-		add_credit(args);
-	}else if(command_== "filters"){
-
-	}else if(command_== "reserves"){
-		reserve(args);
-	}else if(command_== "comments"){
-
-	} else if(command_== "ratings"){
-
-	}else throw Bad_Request();
+	if(command_== "signup") signup(args);
+	else if(command_== "login") login(args);
+	else if(command_== "logout") logout(args);
+	else if(command_== "wallet") add_credit(args);
+	else if(command_== "filters");
+	else if(command_== "reserves") reserve(args);
+	else if(command_== "comments") add_comment(args);
+	else if(command_== "ratings");
+	else throw Bad_Request();
 }
 
 void Command_Parser::delete_parser(string command_, const arguments &args) {
 
-	if(command_== "filters"){
-
-	} else if(command_== "reserves"){
-		cancel_reserve(args);
-	} else throw Bad_Request();
+	if(command_== "filters");
+	else if(command_== "reserves")cancel_reserve(args);
+	else throw Bad_Request();
 }
 
 void Command_Parser::add_credit(const arguments &args) {
@@ -147,4 +133,14 @@ void Command_Parser::show_reserves(const arguments &args) {
 void Command_Parser::cancel_reserve(const arguments &args) {
 
 	utrip->cancel_reservation(stoi(find_arg_val(args,ID)));
+}
+
+void Command_Parser::add_comment(const arguments &args) {
+
+	utrip->add_comment(find_arg_val(args,HOTEL),find_arg_val(args,COMMENT));
+}
+
+void Command_Parser::show_hotel_comments(const arguments &args) {
+
+	utrip->show_hotel_comment(find_arg_val(args,HOTEL));
 }

@@ -19,7 +19,6 @@ void UTrip::creat_user(string user_name, string password, string e_mail) {
 	if(is_user_logged_in()) throw Permission_Denied();
 	try {
 		logged_in_user = users->creat_user(user_name, password, e_mail);
-		cout<<SUCCESS<<endl;
 	}catch (exception& e){
 		cout<<e.what()<<endl;
 		delete(logged_in_user);
@@ -38,8 +37,8 @@ void UTrip::login(string user_name, string password) {
 
 	if(is_user_logged_in()) throw Permission_Denied();
 	try {
-		cout<<SUCCESS<<endl;
 		logged_in_user = users->login(user_name,password);
+		cout<<SUCCESS<<endl;
 	}catch (exception& e){
 		cout<<e.what()<<endl;
 		logged_in_user = nullptr;
@@ -109,4 +108,17 @@ void UTrip::cancel_reservation(int id) {
 
 	if(!is_user_logged_in()) throw Permission_Denied();
 	logged_in_user->cancel_reservation(id);
+}
+
+void UTrip::add_comment(std::string hotel_id,std::string comment) {
+
+	if(!is_user_logged_in()) throw Permission_Denied();
+	logged_in_user->add_comment(comment,hotels->find(hotel_id));
+}
+
+void UTrip::show_hotel_comment(std::string hotel_id) {
+
+	if(!is_user_logged_in()) throw Permission_Denied();
+	Hotel* hotel = hotels->find(hotel_id);
+	hotel->show_comments();
 }

@@ -22,6 +22,7 @@ public:
 	bool have_enough_credit(int credit_);
 	void reserve(Hotel* hotel , std::string room_type , int quantity , range date_ ,int price);
 	void show_reserves();
+	void add_comment(std::string comment,Hotel* hotel);
 
 private:
 

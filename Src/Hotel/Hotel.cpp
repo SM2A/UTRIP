@@ -23,6 +23,7 @@ Hotel::Hotel(string id_, string name_, int star_, string overview_, string facil
 	this->rooms = new Room_handler(data);
 	this->total_rooms_count = data.standard.second + data.deluxe.second + data.luxury.second + data.premium.second;
 	this->average_price = calculate_average_price(data);
+	this->comments = new Comment_Handler();
 }
 
 float Hotel::calculate_average_price(room_data data) {
@@ -94,4 +95,14 @@ vector<Room*> Hotel::reserve(string room_type, int quantity, range date_) {
 	else if(room_type == "premium") rooms_ = rooms->reserve_p(quantity,date_);
 	else if(room_type == "luxury") rooms_ = rooms->reserve_l(quantity,date_);
 	return rooms_;
+}
+
+void Hotel::add_comment(string writer , string comment) {
+
+	comments->add_comment(writer,comment);
+}
+
+void Hotel::show_comments() {
+
+	comments->print();
 }

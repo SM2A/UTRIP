@@ -71,11 +71,7 @@ void Hotel_Handler::print() {
 
 void Hotel_Handler::print(std::string id) {
 
-	try{
-		find(id)->print_detail();
-	}catch (...){
-		throw Not_Found();
-	}
+	find(id)->print_detail();
 }
 
 Hotel *Hotel_Handler::find(std::string id) {
@@ -83,5 +79,5 @@ Hotel *Hotel_Handler::find(std::string id) {
 	for(Hotel* hotel : hotels)
 		if(hotel->id == id) return hotel;
 
-	return nullptr;
+	throw Not_Found();
 }

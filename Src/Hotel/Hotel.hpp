@@ -4,6 +4,7 @@
 #include <string>
 #include "../Room/Room_handler.hpp"
 #include "Hotel_Handler.hpp"
+#include "../Opinion/Comment/Comment_Handler.hpp"
 
 struct coordinates{
 	double longitude;
@@ -25,6 +26,8 @@ public:
 	int reserve_cost(std::string room_type , int quantity , range date_);
 	std::vector<Room*> reserve(std::string room_type , int quantity , range date_);
 	std::string get_id(){ return id;};
+	void add_comment(std::string writer , std::string comment);
+	void show_comments();
 
 private:
 
@@ -39,6 +42,7 @@ private:
 	Room_handler* rooms;
 	int total_rooms_count;
 	float average_price;
+	Comment_Handler* comments;
 
 	float calculate_average_price(room_data data);
 

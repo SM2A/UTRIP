@@ -75,3 +75,9 @@ void User::cancel_reservation(int id) {
 	credit_report.push_back(credit);
 	cout<<SUCCESS<<endl;
 }
+
+void User::add_comment(string comment , Hotel* hotel) {
+
+	hotel->add_comment(name,comment);
+	cout<<SUCCESS<<endl;
+}

@@ -20,6 +20,8 @@ public:
 	void show_hotel(std::string id);
 	void reserve(std::string hotel_id,std::string room_type,int quantity,int check_in,int check_out);
 	void show_reserves();
+	void add_comment(std::string hotel_id,std::string comment);
+	void show_hotel_comment(std::string hotel_id);
 
 private:
 
