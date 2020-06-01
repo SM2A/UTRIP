@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Filter.hpp"
+#include "../Hotel/Hotel_Handler.hpp"
 
 class City : public Filter{
 

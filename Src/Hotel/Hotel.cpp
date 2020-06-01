@@ -31,24 +31,12 @@ float Hotel::calculate_average_price(room_data data) {
 
 	float avg_price = 0;
 	int type_count = 0;
-	long total_price = 0;
+	int total_price = data.standard.first+data.deluxe.first+data.luxury.first+data.premium.first;
 
-	if(data.standard.second!=EMPTY){
-		type_count++;
-		total_price+=data.standard.first;
-	}
-	if(data.deluxe.second!=EMPTY){
-		type_count++;
-		total_price+=data.deluxe.first;
-	}
-	if(data.luxury.second!=EMPTY){
-		type_count++;
-		total_price+=data.luxury.first;
-	}
-	if(data.premium.second!=EMPTY){
-		type_count++;
-		total_price+=data.premium.first;
-	}
+	if(data.standard.first!=EMPTY) type_count++;
+	if(data.deluxe.first!=EMPTY)type_count++;
+	if(data.luxury.first!=EMPTY)type_count++;
+	if(data.premium.first!=EMPTY)type_count++;
 
 	if(type_count==EMPTY) avg_price=EMPTY;
 	else avg_price = (float) total_price/(float)type_count;
@@ -122,5 +110,5 @@ void Hotel::show_average_rating() {
 
 bool Hotel::available_rooms(std::string type,int quantity,range date_) {
 
-	return rooms->count_available_rooms(type,quantity,date_);
+	return rooms->have_available_rooms(type,quantity,date_);
 }

@@ -1,5 +1,6 @@
 #include "Hotel_Handler.hpp"
 #include "../Utility/Error.hpp"
+#include "../Filter/Filter.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -13,6 +14,14 @@ using namespace std;
 
 Hotel_Handler::Hotel_Handler(string path) {
 	this->hotels = read_hotel_file(path);
+}
+
+Hotel_Handler::Hotel_Handler(const Hotel_Handler* hotel_handler){
+
+	for(Hotel* hotel : hotel_handler->hotels) {
+		//Hotel* new_hotel = ;
+		this->hotels.push_back(hotel);
+	}
 }
 
 vector<Hotel*> Hotel_Handler::read_hotel_file(string path) {
@@ -62,10 +71,17 @@ vector<Hotel*> Hotel_Handler::read_hotel_file(string path) {
 	return hotels_;
 }
 
-void Hotel_Handler::print() {
+void Hotel_Handler::print(Filter* filters[FILTERS_SIZE]) {
 
-	if(hotels.size() == EMPTY) throw Empty();
-	for(Hotel* hotel : hotels)
+	Hotel_Handler* filtered_hotels = this;
+
+	if(filters[CITY] != nullptr) filtered_hotels = filters[CITY]->apply(filtered_hotels);
+	if(filters[STAR] != nullptr) filtered_hotels = filters[STAR]->apply(filtered_hotels);
+	if(filters[PRICE] != nullptr) filtered_hotels = filters[PRICE]->apply(filtered_hotels);
+	if(filters[ROOMS] != nullptr) filtered_hotels = filters[ROOMS]->apply(filtered_hotels);
+
+	if(filtered_hotels->hotels.size() == EMPTY) throw Empty();
+	for(Hotel* hotel : filtered_hotels->hotels)
 		hotel->print_summary();
 }
 

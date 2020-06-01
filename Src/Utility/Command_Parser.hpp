@@ -29,8 +29,8 @@ private:
 	void add_credit(const arguments &args);
 	void show_wallet_history(const arguments &args);
 	void show_hotels(const arguments &args);
-	//todo filter
-	//tod delete filter
+	void add_filter(const arguments &args);
+	void remove_filters(const arguments &args);
 	void reserve(const arguments &args);
 	void show_reserves(const arguments &args);
 	void cancel_reserve(const arguments& args);

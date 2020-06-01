@@ -4,7 +4,11 @@
 #include <string>
 #include <vector>
 
+#define FILTERS_SIZE 4
+enum FILTERS{CITY,STAR,PRICE,ROOMS};
+
 class Hotel;
+class Filter;
 
 class Hotel_Handler {
 
@@ -12,7 +16,8 @@ public:
 
 	Hotel_Handler(){}
 	Hotel_Handler(std::string path);
-	void print();
+	Hotel_Handler(const Hotel_Handler* hotel_handler);
+	void print(Filter* filters[FILTERS_SIZE]);
 	void print(std::string id);
 	Hotel* find(std::string id);
 	friend class City;

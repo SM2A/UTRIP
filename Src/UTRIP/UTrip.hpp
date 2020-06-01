@@ -3,7 +3,10 @@
 
 #include "../Hotel/Hotel_Handler.hpp"
 #include "../User/User_Handler.hpp"
+#include "../Filter/Filter.hpp"
 #include "../User/User.hpp"
+
+#define FILTERS_SIZE 4
 
 class UTrip {
 
@@ -25,12 +28,18 @@ public:
 	void add_rating(std::string hotel_id,float location,float cleanness,float staff,float facilities,
 	                float value_for_money,float overall);
 	void show_hotel_rating(std::string hotel_id);
+	void add_city_filter(std::string city);
+	void add_star_filter(int min , int max);
+	void add_price_filter(float min , float max);
+	void add_available_room_filter(std::string type , int quantity , range date_);
+	void remove_filter();
 
 private:
 
 	Hotel_Handler* hotels;
 	User_Handler* users;
 	User* logged_in_user;
+	Filter* filters[FILTERS_SIZE];
 
 	bool is_user_logged_in();
 };

@@ -10,7 +10,7 @@
 #define AMOUNT "amount"
 #define COUNT "count"
 #define HOTEL "hotel"
-#define  TYPE "type"
+#define TYPE "type"
 #define QUANTITY "quantity"
 #define CHECK_IN "check_in"
 #define CHECK_OUT "check_out"
@@ -21,6 +21,11 @@
 #define FACILITIES "facilities"
 #define VALUE_FOR_MONEY "value_for_money"
 #define OVERALL_RATING "overall_rating"
+#define CITY "city"
+#define MIN_STAR "min_star"
+#define MAX_STAR "max_star"
+#define MIN_PRICE "min_price"
+#define MAX_PRICE "max_price"
 
 using namespace std;
 
@@ -94,7 +99,7 @@ void Command_Parser::post_parser(string command_, const arguments &args) {
 	else if(command_== "login") login(args);
 	else if(command_== "logout") logout(args);
 	else if(command_== "wallet") add_credit(args);
-	else if(command_== "filters");
+	else if(command_== "filters") add_filter(args);
 	else if(command_== "reserves") reserve(args);
 	else if(command_== "comments") add_comment(args);
 	else if(command_== "ratings")add_ratting(args);
@@ -103,7 +108,7 @@ void Command_Parser::post_parser(string command_, const arguments &args) {
 
 void Command_Parser::delete_parser(string command_, const arguments &args) {
 
-	if(command_== "filters");
+	if(command_== "filters") remove_filters(args);
 	else if(command_== "reserves")cancel_reserve(args);
 	else throw Bad_Request();
 }
@@ -162,4 +167,27 @@ void Command_Parser::add_ratting(const arguments &args) {
 void Command_Parser::show_hotel_ratting(const arguments &args) {
 
 	utrip->show_hotel_rating(find_arg_val(args,HOTEL));
+}
+
+void Command_Parser::add_filter(const arguments &args) {
+
+	if(args.size() == 1) utrip->add_city_filter(find_arg_val(args,CITY));
+	else if(args.size() == 2){
+		auto itr = args.begin();
+		if((itr->first == MIN_STAR)||(itr->first == MAX_STAR))
+			utrip->add_star_filter(stoi(find_arg_val(args,MIN_STAR)),stoi(find_arg_val(args,MAX_STAR)));
+		else
+			utrip->add_price_filter(stoi(find_arg_val(args,MIN_PRICE)),stoi(find_arg_val(args,MAX_PRICE)));
+	} else if(args.size() == 4) {
+		range date_;
+		date_.start.set_day(stoi(find_arg_val(args,CHECK_IN)));
+		date_.end.set_day(stoi(find_arg_val(args,CHECK_OUT)));
+		utrip->add_available_room_filter(find_arg_val(args,TYPE),stoi(find_arg_val(args,QUANTITY)),date_);
+	}
+}
+
+void Command_Parser::remove_filters(const arguments &args) {
+
+	if(args.size()!=0) throw Bad_Request();
+	utrip->remove_filter();
 }
