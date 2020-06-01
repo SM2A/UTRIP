@@ -119,3 +119,8 @@ void Hotel::show_average_rating() {
 
 	ratings->print_average();
 }
+
+bool Hotel::available_rooms(std::string type,int quantity,range date_) {
+
+	return rooms->count_available_rooms(type,quantity,date_);
+}

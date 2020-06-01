@@ -165,3 +165,16 @@ vector<Room*> Room_handler::reserve_l(int quantity, range date_) {
 		}
 	return rooms;
 }
+
+bool Room_handler::have_available_rooms(std::string type,int quantity ,range date_) {
+
+	if(type == "standard"){
+		return check_availability_s(quantity, date_) != NO_ROOM;
+	} else if(type == "deluxe"){
+		return check_availability_d(quantity, date_) != NO_ROOM;
+	}else if(type == "luxury"){
+		return check_availability_l(quantity, date_) != NO_ROOM;
+	}else if(type == "premium"){
+		return check_availability_p(quantity, date_) != NO_ROOM;
+	}
+}

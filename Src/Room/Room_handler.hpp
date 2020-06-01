@@ -35,6 +35,8 @@ public:
 	std::vector<Room*> reserve_p(int quantity, range date_);
 	std::vector<Room*> reserve_l(int quantity, range date_);
 
+	bool have_available_rooms(std::string type ,int quantity,range date_);
+
 private:
 
 	std::pair<int,std::vector<Standard_Room*>> standard;

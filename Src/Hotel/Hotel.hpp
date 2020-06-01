@@ -32,6 +32,10 @@ public:
 	void rate(std::string writer,float location,float cleanness,float staff,float facilities,
 			float value_for_money,float overall);
 	void show_average_rating();
+	friend class City;
+	friend class Star_Range;
+	friend class Average_Price;
+	friend class Available_Room;
 
 private:
 
@@ -49,6 +53,7 @@ private:
 	Comment_Handler* comments;
 	Rating_Handler* ratings;
 
+	bool available_rooms(std::string type,int quantity,range date_);
 	float calculate_average_price(room_data data);
 
 };
