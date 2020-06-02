@@ -49,7 +49,14 @@ void Command_Parser::get_command(string command) {
 	method_check(method_);
 	arguments arguments_;
 	string arg , val;
-	while (stream>>arg>>val) arguments_.insert(argument_value(arg,val));
+	while (stream>>arg>>val) {
+		if((method_ == method[POST])&&(command_=="filters")&&(arg==CITY)){
+			string city_name;
+			getline(stream,city_name);
+			val+=city_name;
+		}
+		arguments_.insert(argument_value(arg,val));
+	}
 
 	try {
 		if (method_ == method[GET]) get_parser(command_, arguments_);
