@@ -21,8 +21,8 @@ void Reserve::print() {
 
 	if(cancelled) return;
 	string output = "id: "+to_string(id)+" hotel: "+hotel_id+" room: "+room_type+" quantity: "+to_string(quantity)
-			+" cost: "+to_string(cost)+" check_in: "+to_string(reservation_date.start.get_day())
-			+" check_out: "+to_string(reservation_date.end.get_day());
+			+" cost: "+to_string(cost)+" check_in "+to_string(reservation_date.start.get_day())
+			+" check_out "+to_string(reservation_date.end.get_day());
 	cout<<output<<endl;
 }
 

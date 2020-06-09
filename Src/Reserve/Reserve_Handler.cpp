@@ -17,6 +17,7 @@ void Reserve_Handler::print() {
 float Reserve_Handler::cancel(int id) {
 
 	try {
+		if((id > reserves.size())||(id <= 0)) throw Not_Found();
 		float cost = (float)reserves[id-1]->cancel();
 		return cost;
 	}catch (...){

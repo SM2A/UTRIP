@@ -1,12 +1,11 @@
 #include "User.hpp"
 #include "../Utility/Error.hpp"
 #include <iostream>
-#include <iomanip>
 #include "../Hotel/Hotel.hpp"
 
 #define INIT_CREDIT 0
-#define EXPONENT 2
 #define SUCCESS "OK"
+#define CANCEL_RESERVE 2
 
 using namespace std;
 
@@ -42,7 +41,7 @@ void User::add_credit(float value) {
 void User::print_wallet_history(int count) {
 
 	for (int i = 0; (i < credit_report.size()) && (i != count); i++)
-		cout << fixed << setprecision(EXPONENT) << credit_report[(credit_report.size() - 1) - i] << endl;
+		cout << (int)credit_report[(credit_report.size() - 1) - i] << endl;
 }
 
 bool User::have_enough_credit(int credit_) {
@@ -71,7 +70,7 @@ void User::show_reserves() {
 void User::cancel_reservation(int id) {
 
 	float cost = reservations->cancel(id);
-	credit+=cost;
+	credit+=cost/CANCEL_RESERVE;
 	credit_report.push_back(credit);
 	cout<<SUCCESS<<endl;
 }

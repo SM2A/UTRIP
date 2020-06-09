@@ -76,6 +76,7 @@ string Command_Parser::find_arg_val(const arguments& args,string arg) {
 
 void Command_Parser::signup(const arguments& args) {
 
+	if(args.size()!=3) throw Bad_Request();
 	utrip->creat_user(find_arg_val(args,USER_NAME),find_arg_val(args,PASSWORD),find_arg_val(args,E_MAIL));
 }
 
@@ -87,6 +88,7 @@ void Command_Parser::logout(const arguments &args) {
 
 void Command_Parser::login(const arguments &args) {
 
+	if(args.size()!=2) throw Bad_Request();
 	utrip->login(find_arg_val(args,USER_NAME),find_arg_val(args,PASSWORD));
 }
 
@@ -122,22 +124,26 @@ void Command_Parser::delete_parser(string command_, const arguments &args) {
 
 void Command_Parser::add_credit(const arguments &args) {
 
+	if(args.size()!=1) throw Bad_Request();
 	utrip->add_credit(stof(find_arg_val(args,AMOUNT)));
 }
 
 void Command_Parser::show_wallet_history(const arguments &args) {
 
+	if(args.size()!=1) throw Bad_Request();
 	utrip->wallet_history(stoi(find_arg_val(args,COUNT)));
 }
 
 void Command_Parser::show_hotels(const arguments &args) {
 
 	if(args.size() == 0) utrip->show_hotel();
-	else utrip->show_hotel(find_arg_val(args,ID));
+	else if(args.size()==1) utrip->show_hotel(find_arg_val(args,ID));
+	else throw Bad_Request();
 }
 
 void Command_Parser::reserve(const arguments &args) {
 
+	if(args.size()!=5) throw Bad_Request();
 	utrip->reserve(find_arg_val(args,HOTEL),find_arg_val(args,TYPE),stoi(find_arg_val(args,QUANTITY)),
 	               stoi(find_arg_val(args,CHECK_IN)),stoi(find_arg_val(args,CHECK_OUT)));
 }
@@ -150,21 +156,25 @@ void Command_Parser::show_reserves(const arguments &args) {
 
 void Command_Parser::cancel_reserve(const arguments &args) {
 
+	if(args.size()!=1) throw Bad_Request();
 	utrip->cancel_reservation(stoi(find_arg_val(args,ID)));
 }
 
 void Command_Parser::add_comment(const arguments &args) {
 
+	if(args.size()!=2) throw Bad_Request();
 	utrip->add_comment(find_arg_val(args,HOTEL),find_arg_val(args,COMMENT));
 }
 
 void Command_Parser::show_hotel_comments(const arguments &args) {
 
+	if(args.size()!=1) throw Bad_Request();
 	utrip->show_hotel_comment(find_arg_val(args,HOTEL));
 }
 
 void Command_Parser::add_ratting(const arguments &args) {
 
+	if(args.size()!=7) throw Bad_Request();
 	utrip->add_rating(find_arg_val(args,HOTEL),stof(find_arg_val(args,LOCATION)),
 			stof(find_arg_val(args,CLEANLINESS)),stof(find_arg_val(args,STAFF)),
 			stof(find_arg_val(args,FACILITIES)),stof(find_arg_val(args,VALUE_FOR_MONEY)),
@@ -173,6 +183,7 @@ void Command_Parser::add_ratting(const arguments &args) {
 
 void Command_Parser::show_hotel_ratting(const arguments &args) {
 
+	if(args.size()!=1) throw Bad_Request();
 	utrip->show_hotel_rating(find_arg_val(args,HOTEL));
 }
 
@@ -190,7 +201,7 @@ void Command_Parser::add_filter(const arguments &args) {
 		date_.start.set_day(stoi(find_arg_val(args,CHECK_IN)));
 		date_.end.set_day(stoi(find_arg_val(args,CHECK_OUT)));
 		utrip->add_available_room_filter(find_arg_val(args,TYPE),stoi(find_arg_val(args,QUANTITY)),date_);
-	}
+	} else throw Bad_Request();
 }
 
 void Command_Parser::remove_filters(const arguments &args) {
